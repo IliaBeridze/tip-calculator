@@ -1,0 +1,31 @@
+.btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.btn {
+  width: 117px;
+  height: 48px;
+  border-radius: 5px;
+  background: #00474b;
+  color: #fff;
+  font-size: 24px;
+  font-family: sans-serif;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.percent-input {
+  width: 117px;
+  height: 48px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  color: #00474b;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: sans-serif;
+  text-align: right;
+}
