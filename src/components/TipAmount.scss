@@ -1,0 +1,17 @@
+.tip-amount {
+  display: flex;
+  align-items: center;
+ justify-content: space-between;
+  p {
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  div {
+    color: #26c2ae;
+    font-size: 48px;
+    font-family: sans-serif;
+    font-weight: 700;
+  }
+}

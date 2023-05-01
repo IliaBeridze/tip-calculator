@@ -3,4 +3,9 @@
   height: 417px;
   border-radius: 25px;
   background-color: #00474b;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  // align-items: center;
+  justify-content: space-between;
 }

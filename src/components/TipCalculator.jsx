@@ -1,7 +1,7 @@
 import "./TipCalculator.scss";
 import InfoCard from "./InfoCard";
 import ResultCard from "./ResultCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function TipCalculator() {
   const percentsBtn = [
@@ -11,42 +11,80 @@ export default function TipCalculator() {
     { number: 25, id: 4 },
     { number: 50, id: 5 },
   ];
-  function TipAmount(percent, quantity) {
-    return percent / quantity;
-  }
-
-  function Total(bill, percent, quantity) {
-    return bill + percent / quantity;
-  }
-  function getPercent(bill, percent) {
-    return (bill * percent) / 100;
-  }
 
   const [billValue, setBillValue] = useState(0);
 
-  function getBill(value) {
-    setBillValue(value.target.value);
-    console.log(billValue);
+  function getBill(e) {
+    setBillValue(e.target.value);
   }
+
   const [btnValue, setBtnValue] = useState(null);
   function getBtnValue(e) {
     setBtnValue(e.target.value);
+    setActiveClass(billValue !== null);
+    // getPercent(billValue, btnValue);
+    // getAmount(percent, quantity);
+    // getTotal(billValue, percent, quantity);
   }
+
+  const [activeClass, setActiveClass] = useState(false);
+
+  function giveActiveClass() {
+    setActiveClass(billValue !== null);
+  }
+
+  const [percent, setPercent] = useState(0);
+
+  function getPercent(billValue, btnValue) {
+    setPercent((billValue * btnValue) / 100);
+  }
+
+  const [tipPerPerson, setTipPerPerson] = useState(0.0);
+  function getAmount(percent, quantity) {
+    setTipPerPerson(percent / quantity);
+  }
+
   const [quantity, setQuantity] = useState(0);
   function getQuantity(e) {
     setQuantity(e.target.value);
-    console.log(quantity);
   }
-  <div>
-        Show pas {getPercent(billValue, btnValue)}
-        Show total {Total(billValue, getPercent(billValue, btnValue), quantity)}
-        show amount {TipAmount(21, quantity)}
-      </div>
+
+  const [total, setTotal] = useState(0);
+
+  function getTotal(billValue, percent, quantity) {
+    setTotal((+billValue + percent) / quantity);
+  }
+
+  console.log(
+    billValue,
+    percent,
+    quantity,
+    "egia igi",
+    total,
+    "avgia amounti",
+    tipPerPerson
+  );
+
+  useEffect(() => {
+    getPercent(billValue, btnValue);
+    getAmount(percent, quantity);
+    getTotal(billValue, percent, quantity);
+  }, [btnValue]);
+
+  function reset() {
+    setBillValue(0);
+    setBtnValue(null);
+    setPercent(0);
+    setQuantity(0);
+    setTipPerPerson(0);
+    setTotal(0);
+  }
 
   return (
     <div className="tip-calculator">
-      
       <InfoCard
+        active={activeClass}
+        onSubmit={giveActiveClass}
         inputValue={billValue}
         getValue={getBill}
         quantity={quantity}
@@ -55,8 +93,7 @@ export default function TipCalculator() {
         btnValue={btnValue}
         getBtnValue={getBtnValue}
       />
-      <ResultCard />
-
+      <ResultCard amount={tipPerPerson} total={total} reset={reset} />
     </div>
   );
 }
