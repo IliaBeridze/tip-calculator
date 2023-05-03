@@ -10,8 +10,6 @@ export default function InfoCard({
   btnValue,
   quantity,
   getQuantity,
-  active,
-  onSubmit,
 }) {
   return (
     <div className="info-card">
@@ -21,11 +19,10 @@ export default function InfoCard({
 
       <p className="title">Select Tip %</p>
       <PercentBtn
+        
         buttonArr={buttonArr}
         btnValue={btnValue}
         getBtnValue={getBtnValue}
-        onSubmit={onSubmit}
-        active={active}
       />
       <p className="title">Number of People</p>
 
