@@ -33,6 +33,7 @@ export default function TipCalculator() {
     setBtnValue("costom");
     setQuantity(0);
   }
+  
   const percent = (billValue * btnValue) / 100;
   const total = (+billValue + percent) / quantity;
   const tipPerPerson = percent / quantity;
@@ -48,7 +49,7 @@ export default function TipCalculator() {
         btnValue={btnValue}
         getBtnValue={getBtnValue}
       />
-      <ResultCard tipPerPerson={tipPerPerson} total={total} reset={reset} />
+      <ResultCard tipPerPerson={tipPerPerson} total={total } reset={reset} />
     </div>
   );
 }

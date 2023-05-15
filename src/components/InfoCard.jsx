@@ -15,7 +15,9 @@ export default function InfoCard({
     <div className="info-card">
       <p className="title">Bill</p>
 
-      <BillInput getValue={getValue} inputValue={inputValue} />
+      <BillInput getValue={getValue} 
+      inputValue={inputValue} 
+      />
 
       <p className="title">Select Tip %</p>
       <PercentBtn
