@@ -27,7 +27,7 @@ export default function PercentBtn({ buttonArr, getBtnValue, btnValue
       <input
         className="percent-input"
         type="number"
-        placeholder="Costom"
+        placeholder="Custom"
         value={btnValue}
         onChange={getBtnValue}
       />{" "}

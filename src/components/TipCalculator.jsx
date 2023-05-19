@@ -12,9 +12,9 @@ export default function TipCalculator() {
     { number: 50, id: 5 },
   ];
 
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const [billValue, setBillValue] = useState(0);
-  const [btnValue, setBtnValue] = useState(null);
+  const [btnValue, setBtnValue] = useState("custom");
 
   function getQuantity(e) {
     setQuantity(e.target.value);
@@ -30,11 +30,12 @@ export default function TipCalculator() {
 
   function reset() {
     setBillValue(0);
-    setBtnValue("costom");
-    setQuantity(0);
+    setBtnValue("custom");
+    setQuantity(1);
   }
-  
-  const percent = (billValue * btnValue) / 100;
+
+  const desiredPercent = btnValue === "custom" ? 0 : Number(btnValue);
+  const percent = (billValue * desiredPercent) / 100;
   const total = (+billValue + percent) / quantity;
   const tipPerPerson = percent / quantity;
 
@@ -49,7 +50,7 @@ export default function TipCalculator() {
         btnValue={btnValue}
         getBtnValue={getBtnValue}
       />
-      <ResultCard tipPerPerson={tipPerPerson} total={total } reset={reset} />
+      <ResultCard tipPerPerson={tipPerPerson} total={total} reset={reset} />
     </div>
   );
 }
